@@ -162,10 +162,10 @@ CREATE POLICY chat_history_access_policy ON chat_history FOR ALL TO authenticate
 CREATE OR REPLACE FUNCTION update_updated_at_column()
 RETURNS TRIGGER AS $$
 BEGIN
-    NEW updated_at = NOW();
+    NEW.updated_at = NOW();
     RETURN NEW;
 END;
-$$ language 'plpgsql';
+$$ language plpgsql;
 
 CREATE TRIGGER update_users_updated_at 
     BEFORE UPDATE ON users 
