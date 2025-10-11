@@ -1,4 +1,5 @@
 import { Sprout } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -18,11 +19,11 @@ const Footer = () => {
 
           {/* Links */}
           <div className="flex flex-wrap gap-6 text-sm text-white/70 mb-6">
-            <a href="#" className="hover:text-white transition-colors">About</a>
-            <a href="#" className="hover:text-white transition-colors">Features</a>
-            <a href="#" className="hover:text-white transition-colors">Community</a>
-            <a href="#" className="hover:text-white transition-colors">Docs</a>
-            <a href="#" className="hover:text-white transition-colors">Contact</a>
+            <a href="#about" className="hover:text-white transition-colors">About</a>
+            <a href="#features" className="hover:text-white transition-colors">Features</a>
+            <a href="#community" className="hover:text-white transition-colors">Community</a>
+            <Link to="/docs" className="hover:text-white transition-colors">Docs</Link>
+            <a href="#contact" className="hover:text-white transition-colors">Contact</a>
           </div>
 
           {/* Copyright */}

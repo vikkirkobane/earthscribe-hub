@@ -13,6 +13,7 @@ import {
   TrendingUp
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -189,29 +190,35 @@ const Dashboard = () => {
 
       {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Button variant="hero" size="lg" className="h-24">
-          <Trophy className="h-6 w-6 mr-2" />
-          <div className="text-left">
-            <div className="font-semibold">Start a Quest</div>
-            <div className="text-sm opacity-80">Complete land monitoring task</div>
-          </div>
-        </Button>
+        <Link to="/quests">
+          <Button variant="hero" size="lg" className="h-24 w-full">
+            <Trophy className="h-6 w-6 mr-2" />
+            <div className="text-left">
+              <div className="font-semibold">Start a Quest</div>
+              <div className="text-sm opacity-80">Complete land monitoring task</div>
+            </div>
+          </Button>
+        </Link>
         
-        <Button variant="outline" size="lg" className="h-24 border-2">
-          <Leaf className="h-6 w-6 mr-2" />
-          <div className="text-left">
-            <div className="font-semibold">Chat with AI</div>
-            <div className="text-sm opacity-80">Get regeneration advice</div>
-          </div>
-        </Button>
+        <Link to="/ai-advisor">
+          <Button variant="outline" size="lg" className="h-24 w-full border-2">
+            <Leaf className="h-6 w-6 mr-2" />
+            <div className="text-left">
+              <div className="font-semibold">Chat with AI</div>
+              <div className="text-sm opacity-80">Get regeneration advice</div>
+            </div>
+          </Button>
+        </Link>
         
-        <Button variant="outline" size="lg" className="h-24 border-2">
-          <MapPin className="h-6 w-6 mr-2" />
-          <div className="text-left">
-            <div className="font-semibold">Manage Plots</div>
-            <div className="text-sm opacity-80">Track restoration progress</div>
-          </div>
-        </Button>
+        <Link to="/plots">
+          <Button variant="outline" size="lg" className="h-24 w-full border-2">
+            <MapPin className="h-6 w-6 mr-2" />
+            <div className="text-left">
+              <div className="font-semibold">Manage Plots</div>
+              <div className="text-sm opacity-80">Track restoration progress</div>
+            </div>
+          </Button>
+        </Link>
       </div>
     </div>
   );

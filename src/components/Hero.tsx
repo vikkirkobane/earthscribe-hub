@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Sprout, Target, Users, TrendingUp } from "lucide-react";
 import heroImage from "@/assets/hero-restoration.jpg";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -38,12 +39,16 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Button variant="hero" size="lg" className="text-lg px-8">
-              Start Your Journey
-            </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white hover:text-primary">
-              Learn More
-            </Button>
+            <Link to="/signup">
+              <Button variant="hero" size="lg" className="text-lg px-8">
+                Start Your Journey
+              </Button>
+            </Link>
+            <a href="#features">
+              <Button variant="outline" size="lg" className="text-lg px-8 bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white hover:text-primary">
+                Learn More
+              </Button>
+            </a>
           </div>
 
           {/* Stats */}

@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MapPin, Star, Camera, Clock } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const quests = [
   {
@@ -115,10 +116,12 @@ const QuestFeed = () => {
                     <span>10-15 min</span>
                   </div>
                 </div>
-                <Button variant="hero" className="w-full group-hover:shadow-lg">
-                  <Camera className="w-4 h-4" />
-                  Start Quest
-                </Button>
+                <Link to="/quests">
+                  <Button variant="hero" className="w-full group-hover:shadow-lg">
+                    <Camera className="w-4 h-4" />
+                    Start Quest
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           ))}
@@ -126,9 +129,11 @@ const QuestFeed = () => {
 
         {/* View All Button */}
         <div className="text-center mt-12">
-          <Button variant="outline" size="lg" className="border-2">
-            View All Quests
-          </Button>
+          <Link to="/quests">
+            <Button variant="outline" size="lg" className="border-2">
+              View All Quests
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

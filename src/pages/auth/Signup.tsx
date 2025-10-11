@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -28,7 +28,11 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const location = useLocation();
   const { signUp } = useAuth();
+  
+  // Get the redirect path from location state, default to dashboard
+  const from = location.state?.from?.pathname || "/dashboard";
 
   const { register, handleSubmit, formState: { errors } } = useForm<SignupFormData>({
     resolver: zodResolver(signupSchema),
@@ -39,8 +43,8 @@ const Signup = () => {
       setLoading(true);
       setError(null);
       await signUp(data.email, data.password, data.name);
-      // After signup, user will need to verify email - redirect to login or verification page
-      navigate("/login");
+      // After signup, user will need to verify email - redirect to login
+      navigate("/login", { replace: true });
     } catch (err: any) {
       setError(err.message || "Failed to create account. Please try again.");
       console.error("Signup error:", err);

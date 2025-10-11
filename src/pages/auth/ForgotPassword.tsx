@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -20,6 +20,10 @@ const ForgotPassword = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  
+  // Get the redirect path from location state, default to login
+  const from = location.state?.from?.pathname || "/login";
 
   const { register, handleSubmit, formState: { errors } } = useForm<ForgotPasswordFormData>({
     resolver: zodResolver(forgotPasswordSchema),
@@ -73,7 +77,7 @@ const ForgotPassword = () => {
             <Button 
               className="w-full" 
               size="lg"
-              onClick={() => navigate("/login")}
+              onClick={() => navigate(from)}
             >
               Back to Login
             </Button>

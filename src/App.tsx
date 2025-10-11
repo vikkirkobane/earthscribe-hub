@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Layout from "./components/layout/Layout";
@@ -19,6 +19,90 @@ import Plots from "./pages/Plots";
 import Impact from "./pages/Impact";
 import Leaderboard from "./pages/Leaderboard";
 
+// Create router with future flags to prevent warnings
+const router = createBrowserRouter([
+  { path: "/", element: <Index /> },
+  { path: "/login", element: <Login /> },
+  { path: "/signup", element: <Signup /> },
+  { path: "/forgot-password", element: <ForgotPassword /> },
+  {
+    path: "/dashboard",
+    element: (
+      <ProtectedRoute>
+        <Layout>
+          <Dashboard />
+        </Layout>
+      </ProtectedRoute>
+    )
+  },
+  {
+    path: "/quests",
+    element: (
+      <ProtectedRoute>
+        <Layout>
+          <Quests />
+        </Layout>
+      </ProtectedRoute>
+    )
+  },
+  {
+    path: "/ai-advisor",
+    element: (
+      <ProtectedRoute>
+        <Layout>
+          <AIAdvisor />
+        </Layout>
+      </ProtectedRoute>
+    )
+  },
+  {
+    path: "/plots",
+    element: (
+      <ProtectedRoute>
+        <Layout>
+          <Plots />
+        </Layout>
+      </ProtectedRoute>
+    )
+  },
+  {
+    path: "/impact",
+    element: (
+      <ProtectedRoute>
+        <Layout>
+          <Impact />
+        </Layout>
+      </ProtectedRoute>
+    )
+  },
+  {
+    path: "/leaderboard",
+    element: (
+      <ProtectedRoute>
+        <Layout>
+          <Leaderboard />
+        </Layout>
+      </ProtectedRoute>
+    )
+  },
+  {
+    path: "/profile",
+    element: (
+      <ProtectedRoute>
+        <Layout>
+          <Profile />
+        </Layout>
+      </ProtectedRoute>
+    )
+  },
+  { path: "*", element: <NotFound /> }
+], {
+  future: {
+    v7_startTransition: true,
+    v7_relativeSplatPath: true
+  }
+});
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -27,89 +111,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            
-            {/* Protected Routes */}
-            <Route 
-              path="/dashboard" 
-              element={
-                <ProtectedRoute>
-                  <Layout>
-                    <Dashboard />
-                  </Layout>
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/quests" 
-              element={
-                <ProtectedRoute>
-                  <Layout>
-                    <Quests />
-                  </Layout>
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/ai-advisor" 
-              element={
-                <ProtectedRoute>
-                  <Layout>
-                    <AIAdvisor />
-                  </Layout>
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/plots" 
-              element={
-                <ProtectedRoute>
-                  <Layout>
-                    <Plots />
-                  </Layout>
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/impact" 
-              element={
-                <ProtectedRoute>
-                  <Layout>
-                    <Impact />
-                  </Layout>
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/leaderboard" 
-              element={
-                <ProtectedRoute>
-                  <Layout>
-                    <Leaderboard />
-                  </Layout>
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/profile" 
-              element={
-                <ProtectedRoute>
-                  <Layout>
-                    <Profile />
-                  </Layout>
-                </ProtectedRoute>
-              } 
-            />
-            
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+        <RouterProvider router={router} />
       </TooltipProvider>
     </AuthProvider>
   </QueryClientProvider>

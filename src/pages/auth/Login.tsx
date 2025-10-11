@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -22,7 +22,11 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const location = useLocation();
   const { signIn } = useAuth();
+  
+  // Get the redirect path from location state, default to dashboard
+  const from = location.state?.from?.pathname || "/dashboard";
 
   const { register, handleSubmit, formState: { errors } } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
@@ -33,7 +37,7 @@ const Login = () => {
       setLoading(true);
       setError(null);
       await signIn(data.email, data.password);
-      navigate("/dashboard"); // Redirect to dashboard after login
+      navigate(from, { replace: true }); // Redirect to original destination after login
     } catch (err: any) {
       setError(err.message || "Failed to sign in. Please check your credentials.");
       console.error("Login error:", err);
