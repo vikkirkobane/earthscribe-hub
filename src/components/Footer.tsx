@@ -23,7 +23,7 @@ const Footer = () => {
             <a href="#features" className="hover:text-white transition-colors">Features</a>
             <a href="#community" className="hover:text-white transition-colors">Community</a>
             <Link to="/docs" className="hover:text-white transition-colors">Docs</Link>
-            <a href="#contact" className="hover:text-white transition-colors">Contact</a>
+            <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
           </div>
 
           {/* Copyright */}

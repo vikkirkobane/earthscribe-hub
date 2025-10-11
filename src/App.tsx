@@ -18,6 +18,8 @@ import AIAdvisor from "./pages/AIAdvisor";
 import Plots from "./pages/Plots";
 import Impact from "./pages/Impact";
 import Leaderboard from "./pages/Leaderboard";
+import Docs from "./pages/Docs";
+import Contact from "./pages/Contact";
 
 // Create router with future flags to prevent warnings
 const router = createBrowserRouter([
@@ -25,6 +27,8 @@ const router = createBrowserRouter([
   { path: "/login", element: <Login /> },
   { path: "/signup", element: <Signup /> },
   { path: "/forgot-password", element: <ForgotPassword /> },
+  { path: "/docs", element: <Docs /> },
+  { path: "/contact", element: <Contact /> },
   {
     path: "/dashboard",
     element: (

@@ -3,6 +3,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MapPin, Star, Camera, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const quests = [
   {
@@ -64,6 +66,19 @@ const difficultyColors: Record<string, string> = {
 };
 
 const QuestFeed = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  
+  const handleStartQuest = () => {
+    if (!user) {
+      // If not logged in, redirect to login
+      navigate("/login", { state: { from: "/quests" } });
+    } else {
+      // If logged in, go to quests page
+      navigate("/quests");
+    }
+  };
+
   return (
     <section className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -116,12 +131,14 @@ const QuestFeed = () => {
                     <span>10-15 min</span>
                   </div>
                 </div>
-                <Link to="/quests">
-                  <Button variant="hero" className="w-full group-hover:shadow-lg">
-                    <Camera className="w-4 h-4" />
-                    Start Quest
-                  </Button>
-                </Link>
+                <Button 
+                  variant="hero" 
+                  className="w-full group-hover:shadow-lg"
+                  onClick={handleStartQuest}
+                >
+                  <Camera className="w-4 h-4" />
+                  Start Quest
+                </Button>
               </CardContent>
             </Card>
           ))}
@@ -129,11 +146,14 @@ const QuestFeed = () => {
 
         {/* View All Button */}
         <div className="text-center mt-12">
-          <Link to="/quests">
-            <Button variant="outline" size="lg" className="border-2">
-              View All Quests
-            </Button>
-          </Link>
+          <Button 
+            variant="outline" 
+            size="lg" 
+            className="border-2"
+            onClick={handleStartQuest}
+          >
+            View All Quests
+          </Button>
         </div>
       </div>
     </section>
