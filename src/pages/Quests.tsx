@@ -1,11 +1,14 @@
+import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MapPin, Star, Camera, Clock, Trophy, Target, Leaf, Droplets, Mountain, Calendar } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+import QuestDetails from "@/components/QuestDetails";
 
 const Quests = () => {
   const { user } = useAuth();
+  const [selectedQuest, setSelectedQuest] = useState<any>(null);
 
   // Mock data for quests
   const quests = [
@@ -75,6 +78,21 @@ const Quests = () => {
     Easy: "bg-success/10 text-success border-success/20",
     Medium: "bg-sky/10 text-sky border-sky/20",
     Hard: "bg-destructive/10 text-destructive border-destructive/20"
+  };
+
+  const handleStartQuest = (quest: any) => {
+    setSelectedQuest(quest);
+  };
+
+  const handleCloseQuestDetails = () => {
+    setSelectedQuest(null);
+  };
+
+  const handleCompleteQuest = (questId: number, submission: any) => {
+    console.log('Quest completed:', questId, submission);
+    // In a real app, you would update the quest status in the backend
+    // For now, just close the modal
+    setSelectedQuest(null);
   };
 
   return (
@@ -180,6 +198,7 @@ const Quests = () => {
                   variant="hero" 
                   className="w-full group-hover:shadow-lg"
                   disabled={quest.completed}
+                  onClick={() => !quest.completed && handleStartQuest(quest)}
                 >
                   <Camera className="w-4 h-4 mr-2" />
                   {quest.completed ? 'Quest Completed' : 'Start Quest'}
@@ -196,6 +215,14 @@ const Quests = () => {
           View All Quests
         </Button>
       </div>
+      
+      {selectedQuest && (
+        <QuestDetails 
+          quest={selectedQuest} 
+          onClose={handleCloseQuestDetails} 
+          onComplete={handleCompleteQuest} 
+        />
+      )}
     </div>
   );
 };
