@@ -71,14 +71,6 @@ const Sidebar = () => {
 
   return (
     <div className="w-64 h-full bg-background border-r flex flex-col">
-      {/* Logo */}
-      <div className="flex items-center gap-2 p-4 border-b">
-        <div className="bg-primary p-2 rounded-full">
-          <Sprout className="h-6 w-6 text-white" />
-        </div>
-        <span className="text-xl font-bold">TerraGuardian</span>
-      </div>
-
       {/* Navigation */}
       <nav className="flex-1 p-4">
         <ul className="space-y-2">
