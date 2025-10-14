@@ -191,7 +191,7 @@ const Dashboard = () => {
       {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Link to="/quests">
-          <Button variant="hero" size="lg" className="h-24 w-full">
+          <Button variant="hero" size="lg" className="h-24 w-full flex items-center justify-start px-6">
             <Trophy className="h-6 w-6 mr-2" />
             <div className="text-left">
               <div className="font-semibold">Start a Quest</div>
@@ -201,7 +201,7 @@ const Dashboard = () => {
         </Link>
         
         <Link to="/ai-advisor">
-          <Button variant="outline" size="lg" className="h-24 w-full border-2">
+          <Button variant="outline" size="lg" className="h-24 w-full border-2 flex items-center justify-start px-6">
             <Leaf className="h-6 w-6 mr-2" />
             <div className="text-left">
               <div className="font-semibold">Chat with AI</div>
@@ -211,7 +211,7 @@ const Dashboard = () => {
         </Link>
         
         <Link to="/plots">
-          <Button variant="outline" size="lg" className="h-24 w-full border-2">
+          <Button variant="outline" size="lg" className="h-24 w-full border-2 flex items-center justify-start px-6">
             <MapPin className="h-6 w-6 mr-2" />
             <div className="text-left">
               <div className="font-semibold">Manage Plots</div>
