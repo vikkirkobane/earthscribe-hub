@@ -426,8 +426,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-- **Website:** [terraguardian.org](https://terraguardian.org)
-- **Email:** dev@terraguardian.org
+- **Website:** [terraguardian.org](https://terraguardian.netlify.app/)
+- **Email:** victorchogo37@gmail.com
 - **GitHub:** [@vikkirkobane](https://github.com/vikkirkobane)
 - **Issues:** [GitHub Issues](https://github.com/vikkirkobane/earthscribe-hub/issues)
 
