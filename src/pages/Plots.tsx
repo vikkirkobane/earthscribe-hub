@@ -18,12 +18,15 @@ import {
 import { useAuth } from "@/contexts/AuthContext";
 import PlotMap from "@/components/PlotMap";
 import WaterManagement from "@/components/WaterManagement";
+import ClaimPlotForm from "@/components/ClaimPlotForm";
+import ExploreMap from "@/components/ExploreMap";
 
 const Plots = () => {
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState("my-plots");
   const [selectedPlot, setSelectedPlot] = useState<any>(null);
   const [waterManagementPlot, setWaterManagementPlot] = useState<any>(null);
+  const [showClaimForm, setShowClaimForm] = useState<boolean>(false);
 
   // Mock data for plots
   const plots = [
@@ -82,6 +85,14 @@ const Plots = () => {
 
   const handleCloseWaterManagement = () => {
     setWaterManagementPlot(null);
+  };
+
+  const handleClaimPlot = () => {
+    setShowClaimForm(true);
+  };
+
+  const handleCloseClaimForm = () => {
+    setShowClaimForm(false);
   };
 
   const mapData = {
@@ -183,7 +194,7 @@ const Plots = () => {
         <div className="space-y-6">
           {/* Add New Plot Button */}
           <div className="flex justify-end">
-            <Button>
+            <Button onClick={handleClaimPlot}>
               <Plus className="h-4 w-4 mr-2" />
               Claim New Plot
             </Button>
@@ -272,14 +283,12 @@ const Plots = () => {
 
       {activeTab === 'explore' && (
         <Card>
-          <CardHeader>
-            <CardTitle>Explore Nearby Plots</CardTitle>
-            <CardDescription>Discover and contribute to community restoration projects</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-              <p className="text-muted-foreground">Interactive map would go here</p>
-            </div>
+          <CardContent className="p-4">
+            <ExploreMap 
+              plots={plots} 
+              onViewPlot={handleViewPlot} 
+              onWaterManagement={handleWaterManagement} 
+            />
           </CardContent>
         </Card>
       )}
@@ -318,6 +327,12 @@ const Plots = () => {
         <WaterManagement 
           plot={waterManagementPlot} 
           onClose={handleCloseWaterManagement} 
+        />
+      )}
+      
+      {showClaimForm && (
+        <ClaimPlotForm 
+          onClose={handleCloseClaimForm} 
         />
       )}
     </div>
