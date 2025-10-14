@@ -129,7 +129,7 @@ const ExploreMap: React.FC<ExploreMapProps> = ({ plots, onViewPlot, onWaterManag
         </div>
       </div>
       
-      <div className="rounded-lg overflow-hidden border h-[500px] relative">
+      <div className="rounded-lg overflow-hidden border h-[400px] sm:h-[500px] relative">
         <MapContainer
           center={defaultCenter}
           zoom={defaultZoom}
@@ -208,7 +208,7 @@ const ExploreMap: React.FC<ExploreMapProps> = ({ plots, onViewPlot, onWaterManag
       </div>
       
       {/* Plot list below the map */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {plots.map((plot) => (
           <Card key={plot.id} className="overflow-hidden">
             <div className={`h-1 ${plot.status === 'active' ? 'bg-success' : plot.status === 'completed' ? 'bg-primary' : 'bg-muted'}`} />

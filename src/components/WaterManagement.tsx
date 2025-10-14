@@ -114,13 +114,13 @@ const WaterManagement: React.FC<WaterManagementProps> = ({ plot, onClose }) => {
   }, [plot.id, plot.name]);
 
   return (
-    <Card className="fixed inset-4 z-50 m-4 overflow-hidden">
+    <Card className="fixed inset-4 z-50 m-4 overflow-hidden" role="dialog" aria-modal="true" aria-labelledby="water-management-title">
       <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle className="text-lg flex items-center gap-2">
+        <CardTitle id="water-management-title" className="text-lg flex items-center gap-2">
           <Droplets className="h-5 w-5" />
           Water Management: {plot.name}
         </CardTitle>
-        <Button variant="outline" size="sm" onClick={onClose}>
+        <Button variant="outline" size="sm" onClick={onClose} aria-label="Close water management">
           <X className="h-4 w-4" />
         </Button>
       </CardHeader>

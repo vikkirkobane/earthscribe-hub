@@ -81,13 +81,13 @@ const ClaimPlotForm: React.FC<ClaimPlotFormProps> = ({ onClose }) => {
   ];
 
   return (
-    <Card className="fixed inset-4 z-50 m-4 flex flex-col max-h-[95vh]">
+    <Card className="fixed inset-4 z-50 m-4 flex flex-col max-h-[95vh]" role="dialog" aria-modal="true" aria-labelledby="claim-plot-title">
       <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle className="text-lg flex items-center gap-2">
+        <CardTitle id="claim-plot-title" className="text-lg flex items-center gap-2">
           <MapPin className="h-5 w-5" />
           Claim New Plot
         </CardTitle>
-        <Button variant="outline" size="sm" onClick={onClose}>
+        <Button variant="outline" size="sm" onClick={onClose} aria-label="Close form">
           <X className="h-4 w-4" />
         </Button>
       </CardHeader>

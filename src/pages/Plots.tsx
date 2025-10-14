@@ -115,7 +115,7 @@ const Plots = () => {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card>
           <CardContent className="p-4 flex items-center gap-3">
             <div className="bg-primary/10 p-2 rounded-lg">
@@ -166,28 +166,30 @@ const Plots = () => {
       </div>
 
       {/* Tabs for navigation */}
-      <div className="flex border-b">
-        <Button
-          variant="ghost"
-          className={`px-4 py-2 ${activeTab === 'my-plots' ? 'border-b-2 border-primary' : ''}`}
-          onClick={() => setActiveTab('my-plots')}
-        >
-          My Plots
-        </Button>
-        <Button
-          variant="ghost"
-          className={`px-4 py-2 ${activeTab === 'explore' ? 'border-b-2 border-primary' : ''}`}
-          onClick={() => setActiveTab('explore')}
-        >
-          Explore
-        </Button>
-        <Button
-          variant="ghost"
-          className={`px-4 py-2 ${activeTab === 'history' ? 'border-b-2 border-primary' : ''}`}
-          onClick={() => setActiveTab('history')}
-        >
-          History
-        </Button>
+      <div className="overflow-x-auto pb-1">
+        <div className="flex border-b min-w-max">
+          <Button
+            variant="ghost"
+            className={`px-4 py-2 ${activeTab === 'my-plots' ? 'border-b-2 border-primary' : ''}`}
+            onClick={() => setActiveTab('my-plots')}
+          >
+            My Plots
+          </Button>
+          <Button
+            variant="ghost"
+            className={`px-4 py-2 ${activeTab === 'explore' ? 'border-b-2 border-primary' : ''}`}
+            onClick={() => setActiveTab('explore')}
+          >
+            Explore
+          </Button>
+          <Button
+            variant="ghost"
+            className={`px-4 py-2 ${activeTab === 'history' ? 'border-b-2 border-primary' : ''}`}
+            onClick={() => setActiveTab('history')}
+          >
+            History
+          </Button>
+        </div>
       </div>
 
       {activeTab === 'my-plots' && (
@@ -201,7 +203,7 @@ const Plots = () => {
           </div>
 
           {/* Plot List */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {plots.map((plot) => (
               <Card key={plot.id} className="overflow-hidden">
                 <div className={`h-2 ${

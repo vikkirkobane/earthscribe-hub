@@ -51,7 +51,7 @@ const Dashboard = () => {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Points</CardTitle>
@@ -98,7 +98,9 @@ const Dashboard = () => {
       </div>
 
       {/* Recent Activities and Quest Progress */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-6">
+        {/* On larger screens, show side by side */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Recent Activities */}
         <Card>
           <CardHeader>
@@ -108,18 +110,18 @@ const Dashboard = () => {
           <CardContent>
             <div className="space-y-4">
               {recentActivities.map((activity) => (
-                <div key={activity.id} className="flex items-start space-x-4">
-                  <div className="bg-primary/10 p-2 rounded-full">
+                <div key={activity.id} className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="bg-primary/10 p-2 rounded-full flex-shrink-0">
                     {activity.action.includes("Completed") && <Trophy className="h-4 w-4 text-primary" />}
                     {activity.action.includes("Claimed") && <MapPin className="h-4 w-4 text-primary" />}
                     {activity.action.includes("Earned") && <Trophy className="h-4 w-4 text-primary" />}
                   </div>
-                  <div className="flex-1 space-y-1">
-                    <p className="text-sm font-medium">{activity.action}: {activity.title}</p>
+                  <div className="flex-1 min-w-0 space-y-1">
+                    <p className="text-sm font-medium truncate">{activity.action}: {activity.title}</p>
                     <p className="text-xs text-muted-foreground">{activity.date}</p>
                   </div>
                   {activity.points > 0 && (
-                    <div className="flex items-center">
+                    <div className="flex items-center flex-shrink-0">
                       <Trophy className="h-4 w-4 text-yellow-500 mr-1" />
                       <span className="text-sm font-medium">+{activity.points}</span>
                     </div>
@@ -150,6 +152,7 @@ const Dashboard = () => {
             </div>
           </CardContent>
         </Card>
+        </div> {/* End nested grid div */}
       </div>
 
       {/* Impact Section */}
@@ -159,7 +162,7 @@ const Dashboard = () => {
           <CardDescription>The positive change you're creating</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div className="text-center p-4 border rounded-lg">
               <div className="text-2xl font-bold text-primary">2.5 ha</div>
               <div className="text-sm text-muted-foreground">Land Restored</div>
@@ -191,31 +194,31 @@ const Dashboard = () => {
       {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Link to="/quests">
-          <Button variant="hero" size="lg" className="h-24 w-full flex items-center justify-start px-6">
-            <Trophy className="h-6 w-6 mr-2" />
-            <div className="text-left">
-              <div className="font-semibold">Start a Quest</div>
-              <div className="text-sm opacity-80">Complete land monitoring task</div>
+          <Button variant="hero" size="lg" className="h-24 w-full flex items-center justify-start px-6 overflow-hidden">
+            <Trophy className="h-6 w-6 mr-2 flex-shrink-0" />
+            <div className="text-left min-w-0">
+              <div className="font-semibold truncate">Start a Quest</div>
+              <div className="text-sm opacity-80 truncate">Complete land monitoring task</div>
             </div>
           </Button>
         </Link>
         
         <Link to="/ai-advisor">
-          <Button variant="outline" size="lg" className="h-24 w-full border-2 flex items-center justify-start px-6">
-            <Leaf className="h-6 w-6 mr-2" />
-            <div className="text-left">
-              <div className="font-semibold">Chat with AI</div>
-              <div className="text-sm opacity-80">Get regeneration advice</div>
+          <Button variant="outline" size="lg" className="h-24 w-full border-2 flex items-center justify-start px-6 overflow-hidden">
+            <Leaf className="h-6 w-6 mr-2 flex-shrink-0" />
+            <div className="text-left min-w-0">
+              <div className="font-semibold truncate">Chat with AI</div>
+              <div className="text-sm opacity-80 truncate">Get regeneration advice</div>
             </div>
           </Button>
         </Link>
         
         <Link to="/plots">
-          <Button variant="outline" size="lg" className="h-24 w-full border-2 flex items-center justify-start px-6">
-            <MapPin className="h-6 w-6 mr-2" />
-            <div className="text-left">
-              <div className="font-semibold">Manage Plots</div>
-              <div className="text-sm opacity-80">Track restoration progress</div>
+          <Button variant="outline" size="lg" className="h-24 w-full border-2 flex items-center justify-start px-6 overflow-hidden">
+            <MapPin className="h-6 w-6 mr-2 flex-shrink-0" />
+            <div className="text-left min-w-0">
+              <div className="font-semibold truncate">Manage Plots</div>
+              <div className="text-sm opacity-80 truncate">Track restoration progress</div>
             </div>
           </Button>
         </Link>

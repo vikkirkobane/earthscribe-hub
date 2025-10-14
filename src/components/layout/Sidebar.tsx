@@ -70,7 +70,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="w-64 h-full bg-background border-r flex flex-col">
+    <div className="w-64 h-full bg-background border-r flex flex-col hidden md:block">
       {/* Navigation */}
       <nav className="flex-1 p-4">
         <ul className="space-y-2">

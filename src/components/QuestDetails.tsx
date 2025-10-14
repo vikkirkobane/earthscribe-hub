@@ -137,13 +137,13 @@ const QuestDetails: React.FC<QuestDetailsProps> = ({ quest, onClose, onComplete 
   const defaultZoom = 13;
 
   return (
-    <Card className="fixed inset-4 z-50 m-4 flex flex-col max-h-[95vh]">
+    <Card className="fixed inset-4 z-50 m-4 flex flex-col max-h-[95vh]" role="dialog" aria-modal="true" aria-labelledby="quest-details-title">
       <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle className="text-lg flex items-center gap-2">
+        <CardTitle id="quest-details-title" className="text-lg flex items-center gap-2">
           <QuestIcon className="h-5 w-5" />
           {quest.title}
         </CardTitle>
-        <Button variant="outline" size="sm" onClick={onClose}>
+        <Button variant="outline" size="sm" onClick={onClose} aria-label="Close quest details">
           <X className="h-4 w-4" />
         </Button>
       </CardHeader>

@@ -13,9 +13,9 @@ const Layout = ({ children, showSidebar = true }: LayoutProps) => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <div className="flex flex-1">
-        {showSidebar && <Sidebar />}
-        <main className={`flex-1 ${showSidebar ? 'md:ml-0' : ''}`}>
-          <div className="container mx-auto px-4 py-6">
+        {showSidebar && <div className="md:fixed md:block md:w-64 md:h-full z-10"><Sidebar /></div>}
+        <main className={`flex-1 ${showSidebar ? 'md:ml-64' : ''}`}>
+          <div className="w-full px-4 py-6">
             {children}
           </div>
         </main>
