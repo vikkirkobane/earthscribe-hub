@@ -16,10 +16,14 @@ import {
   Eye
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+import PlotMap from "@/components/PlotMap";
+import WaterManagement from "@/components/WaterManagement";
 
 const Plots = () => {
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState("my-plots");
+  const [selectedPlot, setSelectedPlot] = useState<any>(null);
+  const [waterManagementPlot, setWaterManagementPlot] = useState<any>(null);
 
   // Mock data for plots
   const plots = [
@@ -63,6 +67,22 @@ const Plots = () => {
       co2Sequestered: 1.8
     }
   ];
+
+  const handleViewPlot = (plot: any) => {
+    setSelectedPlot(plot);
+  };
+
+  const handleCloseMap = () => {
+    setSelectedPlot(null);
+  };
+
+  const handleWaterManagement = (plot: any) => {
+    setWaterManagementPlot(plot);
+  };
+
+  const handleCloseWaterManagement = () => {
+    setWaterManagementPlot(null);
+  };
 
   const mapData = {
     bounds: {
@@ -225,11 +245,20 @@ const Plots = () => {
                     </div>
                     
                     <div className="flex gap-2 pt-2">
-                      <Button variant="outline" size="sm" className="flex-1">
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="flex-1"
+                        onClick={() => handleViewPlot(plot)}
+                      >
                         <Eye className="h-4 w-4 mr-2" />
                         View
                       </Button>
-                      <Button variant="outline" size="sm">
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => handleWaterManagement(plot)}
+                      >
                         <Droplets className="h-4 w-4" />
                       </Button>
                     </div>
@@ -276,6 +305,20 @@ const Plots = () => {
             </div>
           </CardContent>
         </Card>
+      )}
+      
+      {selectedPlot && (
+        <PlotMap 
+          plot={selectedPlot} 
+          onClose={handleCloseMap} 
+        />
+      )}
+      
+      {waterManagementPlot && (
+        <WaterManagement 
+          plot={waterManagementPlot} 
+          onClose={handleCloseWaterManagement} 
+        />
       )}
     </div>
   );
